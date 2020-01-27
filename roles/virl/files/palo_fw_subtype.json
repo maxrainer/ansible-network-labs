@@ -1,0 +1,26 @@
+{
+    "errors": [],
+    "dynamic-subtypes": [
+        {
+        "hw_vcpus": 2,
+        "plugin_desc": "Palo Alto Firewall",
+        "cli_serial": 1,
+        "plugin_name": "palo_alto",
+        "gui_visible": true,
+        "interface_range": 24,
+        "interface_pattern": "Ethernet1/{0}",
+        "hw_disk_bus": "virtio",
+        "baseline_flavor": "",
+        "hw_vm_extra": "",
+        "hw_ram": 4096,
+        "gui_icon": "firewall",
+        "interface_first": 1,
+        "config_file": "/bootstrap-networkconfig.xml",
+        "hw_vif_model": "virtio",
+        "interface_management": "mgt",
+        "baseline_image": "",
+        "plugin_base": "generic"
+        }
+    ],  
+    "imported-all": true
+}

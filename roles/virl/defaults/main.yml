@@ -1,0 +1,71 @@
+---
+ansible_user: virl
+
+packet_facility: ams1
+packet_project: projectID
+packet_ssh_key_pub: ~/.ssh/packet_rsa.pub
+packet_ssh_key_label: packet
+
+# virl
+packet_virl_hostname: virl
+packet_virl_state: present
+packet_virl_os: custom_ipxe
+packet_virl_url: http://packet.virl.info
+
+#Only t1.small, c1.small and m1.xlarge are supported.
+packet_virl_plan: t1.small
+
+virl_palo_image_src: /tmp/paloalto.qcow2
+
+virl_license_file: your-id.virl.info.pem
+virl_uwm_password: password
+virl_guest_password: guest
+virl_virl_password: VIRL
+
+virl_license_pem: |
+  -----BEGIN RSA PRIVATE KEY-----
+   xxxxxxxxx
+   xxxxxxxxx
+   -----END RSA PRIVATE KEY-----
+
+#  #!ipxe
+# chain -ar {{ packet_virl_url }}
+
+packet_virl_user_data: |
+ #cloud-config
+ license_file: {{ virl_license_file }}
+ license_masters: "vsm-eu-51.virl.info, vsm-eu-52.virl.info, vsm-eu-53.virl.info, vsm-eu-54.virl.info"
+ license_pem: |
+  -----BEGIN RSA PRIVATE KEY-----
+  MIIEowIBAAKCAQEAvQIyF0xc0QAS1HWXN3pKSDfqtx0cWeCBA4KQPAAXm4cb3TQp
+  e3Vw33cJ6zSuHAYsg30rYt/UwTI/VmU6v/a0OgE4GDdVT1N8ksUnHSXPgjRBEiZs
+  TUIxGWUdYGf4wvve4vBKcf88vRLhsSxOiirCL4H9W3cDV5nVAJvXrtWF3SKl3Vch
+  iSjyPCt7toZ3Cuk19mq2ts0h5eHpfN3qo8okr3wgpscmQ149y7xAd/buBtOMdRvp
+  RIP2jgnQHia0xbX8YEPMva2rzxjLCUIMDHbZVZ/406xoa/IfUYpwChS3aF8dAAs6
+  LHjOQUcQ1qVJMjHMUKxPWFBGsS8OsPQpHaR+DQIDAQABAoIBACYDlAmFjUFnz2G1
+  yNUanmgJ/wYXL8WP1sLa9qFqr1TThrIltJYlF6+KJI+Ox9nREBDeEuTO+d5lecGp
+  mHhVaQgliJ+uOVU8CFkImAZPvX2FfvTkj3G2d2ORJ6hlIO4udDSWeZKV8CRi8MuO
+  irlVQjsF3OwRcrWitelqbqW2QjcoUUkXHmkpLvn+kNz+njDeRJh7kFf5w5Z2wO+S
+  HBNaXse3672Qoe2vIiy05ewpBsLYpUn9l0fWmZAdIFOk1/YHkRC8/s7o3ITcvv2b
+  jmVsNoIRGFiSaWgT994hM3P2BrkUxNq5f/+7OUo0I8bD5FnMb5AV5cgrW5IdrO3H
+  mzRUeo0CgYEA1dVhKnC2kIlqYh80+XQiQxkVRb5+M/+yNq4oLGWyvbmQFgcPg3OC
+  qWok0gSIr03xheGueYydjYxPYOR5m984dVMKB4PIsLs2xvdvFrN9Bx9ugFGDLqMJ
+  61IMu255l4pbdzhCcXkhGqH/gN3tDH3OqLhTty2Exag/sAw/8CWN2fsCgYEA4kee
+  MBzdC0RyYsMMDb+N4M6b3lL8r6DN/6JZdQhNtAZlydeqINCnH7KUVMYmRNyraJ/r
+  CFPIUWA4yOaRClElJ/TFtscx9fmejA4Lq5VnrDePe+7jtxXZbJJ0huyk61Q00zfS
+  hQyyyjiRdozWZabpoO8TR71jgT1Fsvvb69OZ0ZcCgYEA07j0/kqf2TjWZtUzZJNC
+  oWEimO3mk6HnWRDTojIH6qbjLYxMJgGnLAt27aOjmr/4FnHAiYVbMp3ssqlGZ7l7
+  c1+HHK21dpfHwvWXvsh1USokBVWwJ+sylReml6bpKczKh57i2uvuhSpFi9kxLx8a
+  EiCAc2zUe8j9VliqriLg8yUCgYAPG+kcHVFFJ1Tb81oisN+wWxtdRP1KXNpkb1q5
+  zcwicSrqx1O8zTHbk/kDkBeOEY4Adm0jKTT++gXQpFSa88AfYuCwy6wyWHCVuXpe
+  AqPhg/Q4ukLKPtM9xKmzOKnqbLz6PYf5ClgF2LEd0Vmff/2pmU0YRTUXtBerU9Xj
+  cUWcEQKBgC2Gb1YUrOfTV1jxAL0gJQyD/rXD0XInBmFlDCt24KzxfUeYh4cDUq8+
+  2hsL56bShv7Mow6UfJqsdrGjyVxhtOOtkpVHiVTHchwEeN/9fR31BYmD8VXz/toR
+  Laq4xvQHy8he/+HN5e++euJ9OapqripNBPXl3qp0Yx4dwODlbL6v
+  -----END RSA PRIVATE KEY-----
+ uwm_password: {{ virl_uwm_password }}
+ guest_password: {{ virl_guest_password }}
+ virl_password: {{ virl_virl_password }}
+
+
+

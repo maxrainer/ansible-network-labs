@@ -1,0 +1,44 @@
+---
+# deploy VIRL server 
+
+- name: SSH public key for VIRL
+  packet_sshkey:
+    auth_token: "{{ packet_token }}"
+    key_file: "{{ packet_ssh_key_pub }}"
+    label: "{{ packet_ssh_key_label }}"
+  connection: local
+
+- name: deploy / destroy Cisco VIRL server
+  my_packet_device: 
+    facility: "{{ packet_facility }}"
+    project_id: "{{ packet_project }}"
+    auth_token: "{{ packet_token }}"
+    hostnames: "{{ packet_virl_hostname }}"
+    operating_system: "{{ packet_virl_os }}"
+    ipxe_script_url: "{{ packet_virl_url }}"
+    wait_for_public_IPv: 4
+    plan: "{{ packet_virl_plan }}"
+    user_data: "{{ packet_virl_user_data }}"
+    state: "{{ packet_virl_state }}"
+  register: virl_server
+  connection: local
+  tags: 
+    - destroy
+
+- name: debug
+  debug:
+    msg: "{{ virl_server }}"
+  tags: [ debug, never ]
+
+- name: set VIRL facts
+  set_fact:
+    ansible_host: "{{ virl_server.devices[0].public_ipv4 }}"
+
+- name: "waiting for ssh @{{ ansible_host }}"
+  wait_for:
+    delay: 1
+    host: "{{ ansible_host }}"
+    port: 22
+    state: started
+    timeout: 600
+  connection: local

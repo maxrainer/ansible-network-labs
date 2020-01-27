@@ -1,0 +1,6 @@
+{
+	"subtype": "palo_alto",
+	"version": "8.0",
+	"release": "8.0.1",
+	"image-path": "/tmp/paloalto.qcow2"
+}

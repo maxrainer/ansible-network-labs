@@ -1,0 +1,7 @@
+- name: destroy network lab Cisco VIRL on packet.net
+  hosts: virl
+  roles:
+    - virl 
+  gather_facts: no
+  vars:
+    - packet_virl_state: absent

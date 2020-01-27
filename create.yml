@@ -1,0 +1,5 @@
+- name: Packet.net network lab Cisco VIRL
+  hosts: virl
+  roles:
+    - virl 
+  gather_facts: no

@@ -1,0 +1,10 @@
+---
+# tasks file for virl
+
+- include_tasks:
+    file: virl_server.yml
+  tags:
+    - always
+
+- include_tasks: 
+    file: paloalto.yml

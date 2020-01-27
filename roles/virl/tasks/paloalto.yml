@@ -1,0 +1,35 @@
+---
+# Palo Alto 
+
+- name: copy Palo Alto Firewall image to VIRL server
+  copy: 
+    src: "{{ virl_palo_image_src }}"
+    dest: /tmp/paloalto.qcow2
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+  tags: copy
+
+- name: add PaloAlto Subtype to VIRL UWM
+  uri:
+    url: "http://{{ ansible_host }}/rest/importsubtypes"
+    body_format: json
+    method: POST
+    user: uwmadmin
+    password: "{{ virl_uwm_password }}"
+    body: "{{ lookup('file','palo_fw_subtype.json') }}"
+    force_basic_auth: yes
+    status_code: [500, 201, 200]
+  connection: local
+
+- name: add PaloAlto image to VIRL UWM
+  uri:
+    url: "http://{{ ansible_host }}/rest/images"
+    body_format: json
+    method: POST
+    user: uwmadmin
+    password: "{{ virl_uwm_password }}"
+    force_basic_auth: yes
+    status_code: [200]
+    body: "{{ lookup('file','palo_fw_image.json') }}"
+    timeout: 600
+  connection: local
