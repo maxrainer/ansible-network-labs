@@ -1,0 +1,5 @@
+*.inv
+*.retry
+host_vars*
+group_vars*
+inventory*
