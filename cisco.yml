@@ -5,11 +5,9 @@
     - ios-switch
   hosts: switch
   gather_facts: true
-  connection: local
 
 - name: IOS L3 Router 
   roles: 
     - ios-router
   hosts: router
   gather_facts: true
-  connection: local
