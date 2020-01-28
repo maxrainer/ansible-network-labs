@@ -1,10 +1,10 @@
 ---
 
-- name: L2 interface config 
-  ios_l2_interfaces:
-    config:
-      - name: "{{ item.name }}"
-        access: 
-          vlan: "{{ item.access.vlan }}"
-    state: merged
-  loop: "{{ interface_config }}"
+# - name: L2 interface config 
+#   ios_l2_interfaces:
+#     config:
+#       - name: "{{ item.name }}"
+#         access: 
+#           vlan: "{{ item.access.vlan }}"
+#     state: merged
+#   loop: "{{ interface_config }}"
