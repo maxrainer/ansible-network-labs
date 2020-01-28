@@ -13,6 +13,7 @@
         - address: "{{ item.ipv4.address }}"
     state: merged
   loop: "{{ interface_config }}"
+  notify: save config
 
 - name: Interface description and bring 'up'
   ios_interfaces:
@@ -22,6 +23,7 @@
         enabled: "{{ item.enabled }}"
     state: merged
   loop: "{{ interface_config }}"
+  notify: save config
       
 - name: wait some time to bring up network....
   wait_for:

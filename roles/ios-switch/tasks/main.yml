@@ -13,3 +13,4 @@
           vlan: "{{ item.access.vlan }}"
     state: merged
   loop: "{{ interface_config }}"
+  notify: save config
