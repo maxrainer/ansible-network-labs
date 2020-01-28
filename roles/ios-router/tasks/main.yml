@@ -1,5 +1,10 @@
 --- 
 
+- include_tasks: facts.yml
+  tags: 
+    - facts
+    - never
+
 - name: Interface IPv4 Addresses
   ios_l3_interfaces: 
     config: 

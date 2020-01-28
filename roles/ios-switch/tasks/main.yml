@@ -1,5 +1,10 @@
 ---
 
+- include_tasks: facts.yml
+  tags: 
+    - facts
+    - never
+
 - name: L2 interface config 
   ios_l2_interfaces:
     config:
