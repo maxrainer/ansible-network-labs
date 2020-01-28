@@ -6,4 +6,5 @@
   register: iosfacts
 
 - name: facts collected
-  msg: "{{ iosfacts }}"
+  debug:
+   msg: "{{ iosfacts }}"
