@@ -1,0 +1,7 @@
+---
+
+- name: IOS L2 Switch
+  roles: 
+    - ios-switch
+  hosts: switch
+  gather_facts: false

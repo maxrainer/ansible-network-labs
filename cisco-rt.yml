@@ -1,0 +1,7 @@
+---
+
+- name: IOS L3 Router 
+  roles: 
+    - ios-router
+  hosts: router
+  gather_facts: false

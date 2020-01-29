@@ -1,9 +1,7 @@
 --- 
 
 - include_tasks: facts.yml
-  tags: 
-    - facts
-    - never
+  tags: [facts, never]
 
 - name: Interface IPv4 Addresses
   ios_l3_interfaces: 
@@ -14,6 +12,7 @@
     state: merged
   loop: "{{ interface_config }}"
   notify: save config
+  tags: [always, config]
 
 - name: Interface description and bring 'up'
   ios_interfaces:
@@ -24,14 +23,23 @@
     state: merged
   loop: "{{ interface_config }}"
   notify: save config
+  tags: [always, config]
       
-- name: wait some time to bring up network....
+- name: wait 5s to bring up interfaces....
   wait_for:
     timeout: 5
+  tags: [always, config]
 
 - name: IOS ping neighbour Router
   ios_ping:
     dest: "{{ item }}"
     count: 2
   loop: "{{ ping_destinations }}"
-        
+  tags: [always, config]
+
+- name: rollback interface config
+  ios_config:
+    lines: "default interface {{ item.name }}"
+  loop: "{{ interface_config }}"
+  tags: [never, rollback]
+  

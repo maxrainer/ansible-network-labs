@@ -14,3 +14,10 @@
     state: merged
   loop: "{{ interface_config }}"
   notify: save config
+  tags: [always, config]
+
+- name: rollback interface config
+  ios_config:
+    lines: "default interface {{ item.name }}"
+  loop: "{{ interface_config }}"
+  tags: [never, rollback]
