@@ -1,0 +1,37 @@
+---
+
+- name: configure global BGP neighbors
+  ios_bgp:
+    config: 
+      bgp_as: "{{ ios_bgp_as }}"
+      neighbors: 
+        - neighbor: "{{ item.ipaddress }}"
+          remote_as: "{{ item.as }}"
+    operation: merge
+  loop: "{{ ios_bgp_neighbors }}"
+
+- name: configure IPv4 family BGP neighbors
+  ios_bgp:
+    config:
+      bgp_as: "{{ ios_bgp_as }}"
+      address_family:
+        - afi: ipv4
+          safi: unicast
+          neighbors:
+            - neighbor: "{{ item.ipaddress }}"
+              activate: "{{ item.activate }}"  
+    operation: merge
+  loop: "{{ ios_bgp_neighbors }}"
+
+- name: configure BGP networks
+  ios_bgp:
+    config:
+      bgp_as: "{{ ios_bgp_as }}"
+      address_family:
+        - afi: ipv4
+          safi: unicast
+          networks:
+            - prefix: "{{ item.prefix }}" 
+              masklen: "{{ item.masklen }}"
+    operation: merge
+  loop: "{{ ios_bgp_networks }}"

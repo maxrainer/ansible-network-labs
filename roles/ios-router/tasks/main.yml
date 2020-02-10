@@ -42,4 +42,9 @@
     lines: "default interface {{ item.name }}"
   loop: "{{ interface_config }}"
   tags: [never, rollback]
+
+- include_tasks: bgp.yml
+  tags: bgp
+  when: ios_bgp_enabled
+  
   

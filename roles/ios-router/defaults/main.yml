@@ -1,0 +1,13 @@
+---
+
+ios_bgp_enabled: false
+ios_bgp_as: 10 
+
+ios_bgp_neighbors: 
+  - as: 10
+    ipaddress: 2.2.2.2
+    activate: yes
+
+ios_bgp_networks: 
+  - prefix: 9.9.9.9
+    masklen: 32
