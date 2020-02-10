@@ -8,3 +8,4 @@
 
 - include_tasks: 
     file: paloalto.yml
+  when: virl_feature_palo

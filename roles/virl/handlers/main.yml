@@ -1,2 +1,12 @@
 ---
 # handlers file for virl
+
+- name: restart salt 
+  systemd: 
+    name: salt-minion
+    state: restarted
+  become: true
+
+- name: reboot
+  reboot: 
+  become: true

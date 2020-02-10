@@ -42,3 +42,23 @@
     state: started
     timeout: 600
   connection: local
+
+- name: ensure python interpreter
+  set_fact: 
+    ansible_python_interpreter: /usr/bin/python3
+
+- name: fix virl.ini salt master server to EU
+  replace:
+    path: /etc/virl.ini
+    replace: 'salt_master: vsm-eu-51.virl.info, vsm-eu-52.virl.info, vsm-eu-53.virl.info, vsm-eu-54.virl.info'
+    regexp: '^salt_master:.*'
+  become: true
+  notify: reboot
+
+- name: fix salt/minion.d master server 
+  replace:
+    path: /etc/salt/minion.d/extra.conf
+    regexp: '^master: .*'
+    replace: 'master: [vsm-eu-51.virl.info, vsm-eu-52.virl.info, vsm-eu-53.virl.info, vsm-eu-54.virl.info]'
+  become: true
+  notify: reboot

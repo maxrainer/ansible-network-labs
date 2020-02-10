@@ -1,0 +1,7 @@
+---
+
+- name: backup IOS
+  roles:
+    - network-backup
+  hosts: router 
+  gather_facts: false

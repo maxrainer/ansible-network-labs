@@ -12,6 +12,8 @@ packet_virl_state: present
 packet_virl_os: custom_ipxe
 packet_virl_url: http://packet.virl.info
 
+virl_feature_palo: False
+
 #Only t1.small, c1.small and m1.xlarge are supported.
 packet_virl_plan: t1.small
 

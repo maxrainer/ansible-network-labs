@@ -1,0 +1,10 @@
+---
+
+- name: fetch IOS running config
+  ios_config: 
+    backup: yes
+  register: running_config
+
+- name: runn conf out
+  debug: 
+    msg: "{{ running_config }}"

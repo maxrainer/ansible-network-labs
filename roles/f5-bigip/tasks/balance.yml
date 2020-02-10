@@ -31,5 +31,11 @@
     pool: www_pool
     snat: "Automap"
   notify: save config
+  register: vservercache
+
+- name: delay after virtual server changed
+  wait_for:
+    timeout: 5
+  when: vservercache.changed
 
 
