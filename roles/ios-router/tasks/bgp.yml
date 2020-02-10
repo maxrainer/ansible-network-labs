@@ -9,6 +9,7 @@
           remote_as: "{{ item.as }}"
     operation: merge
   loop: "{{ ios_bgp_neighbors }}"
+  tags: [bgp, config]
 
 - name: configure IPv4 family BGP neighbors
   ios_bgp:
@@ -22,6 +23,7 @@
               activate: "{{ item.activate }}"  
     operation: merge
   loop: "{{ ios_bgp_neighbors }}"
+  tags: [bgp, config]
 
 - name: configure BGP networks
   ios_bgp:
@@ -35,3 +37,11 @@
               masklen: "{{ item.masklen }}"
     operation: merge
   loop: "{{ ios_bgp_networks }}"
+  tags: [bgp, config]
+
+- name: rollback BGP config
+  ios_bgp:
+    config:
+      bgp_as: "{{ ios_bgp_as }}"
+    operation: delete
+  tags: [never, rollback]

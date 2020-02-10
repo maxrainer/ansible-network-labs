@@ -3,48 +3,10 @@
 - include_tasks: facts.yml
   tags: [facts, never]
 
-- name: Interface IPv4 Addresses
-  ios_l3_interfaces: 
-    config: 
-      - name: "{{ item.name }}"
-        ipv4: 
-        - address: "{{ item.ipv4.address }}"
-    state: merged
-  loop: "{{ interface_config }}"
-  notify: save config
-  tags: [always, config]
-
-- name: Interface description and bring 'up'
-  ios_interfaces:
-    config: 
-      - name: "{{ item.name }}"
-        description: "{{ item.description }}"
-        enabled: "{{ item.enabled }}"
-    state: merged
-  loop: "{{ interface_config }}"
-  notify: save config
-  tags: [always, config]
-      
-- name: wait 5s to bring up interfaces....
-  wait_for:
-    timeout: 5
-  tags: [always, config]
-
-- name: IOS ping neighbour Router
-  ios_ping:
-    dest: "{{ item }}"
-    count: 2
-  loop: "{{ ping_destinations }}"
-  tags: [always, config]
-
-- name: rollback interface config
-  ios_config:
-    lines: "default interface {{ item.name }}"
-  loop: "{{ interface_config }}"
-  tags: [never, rollback]
+- include_tasks: interface.yml
+  tags: [interface, never]
 
 - include_tasks: bgp.yml
-  tags: bgp
-  when: ios_bgp_enabled
+  tags: [bgp, never]
   
   
