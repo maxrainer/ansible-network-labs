@@ -8,5 +8,6 @@
 
 - include_tasks: bgp.yml
   tags: [bgp, never]
-  
-  
+
+- include_tasks: pyats.yml
+  tags: [pyats, never]

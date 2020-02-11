@@ -1,0 +1,7 @@
+---
+
+dependencies: 
+  - src: clay584.parse_genie
+
+galaxy_info:
+  author: Markus Rainer

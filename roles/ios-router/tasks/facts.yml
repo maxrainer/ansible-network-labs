@@ -4,7 +4,9 @@
   ios_facts: 
     gather_subset: all
   register: iosfacts
+  tags: facts
 
 - name: facts collected
   debug:
    msg: "{{ iosfacts }}"
+  tags: [never, debug]
