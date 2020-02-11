@@ -2,6 +2,11 @@
 # test BGP table has min. 2 entries
 #
 
+- name: "delay testing for {{ ios_test_delay }}s"
+  wait_for:
+    timeout: "{{ ios_test_delay }}"
+  tags: [always]
+
 - name: Read in parse_genie role
   include_role:
     name: clay584.parse_genie
