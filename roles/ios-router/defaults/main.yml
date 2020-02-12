@@ -4,6 +4,7 @@ ios_bgp_enabled: false
 ios_bgp_as: 10 
 
 ios_test_delay: 1
+ios_genie_generic_command: show version
 
 ios_bgp_neighbors: 
   - as: 10
