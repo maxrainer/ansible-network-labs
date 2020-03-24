@@ -1,0 +1,10 @@
+---
+
+- name: localhost /etc/hosts entry
+  lineinfile:
+    name: /etc/hosts
+    regexp: "^{{ ansible_host }}"
+    line: "{{ ansible_host }}     virl.packet"
+    state: present
+  delegate_to: localhost
+  become: true 

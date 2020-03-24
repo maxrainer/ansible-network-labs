@@ -1,0 +1,12 @@
+- name: IOS Operating State
+  roles: 
+  - role: operating_state
+    gather_states:
+#    - interfaces
+    - cdp
+  hosts: router
+  gather_facts: false
+
+  tasks:
+  - debug:
+      var: ansible_facts

@@ -9,3 +9,7 @@
 - include_tasks: 
     file: paloalto.yml
   when: virl_feature_palo
+
+- include_tasks:
+    file: prework.yml
+  tags: always

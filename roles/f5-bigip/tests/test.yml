@@ -1,5 +1,7 @@
 ---
-- hosts: localhost
-  remote_user: root
-  roles:
+- name: F5 BigIP
+  hosts: f5
+  roles: 
     - f5-bigip
+  connection: local
+  gather_facts: no

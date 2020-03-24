@@ -23,9 +23,9 @@
   notify: save config
   tags: [always, config]
       
-- name: wait 5s to bring up interfaces....
+- name: wait 10s to bring up interfaces....
   wait_for:
-    timeout: 5
+    timeout: 10
   tags: [always, config]
 
 - name: IOS ping neighbour Router
