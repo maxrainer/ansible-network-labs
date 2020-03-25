@@ -15,7 +15,7 @@
 - name: debug Layer 3 Interface result 
   debug:
     msg: "{{ _int_l3 }}"
-  verbosity: 2
+    verbosity: 2
   tags: [always, config]
 
 - name: Interface description and bring 'up'
@@ -33,7 +33,7 @@
 - name: debug IOS Interface result 
   debug:
     msg: "{{ _int_descr }}"
-  verbosity: 2
+    verbosity: 2
   tags: [always, config]
 
 - name: IOS ping neighbour Router
@@ -42,7 +42,7 @@
     count: 2
   loop: "{{ ping_destinations }}"
   register: _ping
-  until: "{{ not _ping.failed }}"
+  until: not _ping.failed
   delay: 2
   retries: 10
   tags: [always, config]
@@ -57,5 +57,5 @@
 - name: debug IOS Interface rollback 
   debug:
     msg: "{{ _int_rollback }}"
-  verbosity: 2
-  tags: [always, config]
+    verbosity: 2
+  tags: [never, rollback]

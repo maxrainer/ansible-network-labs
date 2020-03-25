@@ -5,3 +5,4 @@ group_vars*
 inventory*
 ansible.cfg
 tmp/*
+local_*
