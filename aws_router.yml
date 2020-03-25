@@ -1,4 +1,4 @@
-- name: post CSR Router on AWS
+- name: generic play for function_router group
   hosts: function_router
   gather_facts: false
   roles: 
