@@ -12,9 +12,11 @@
   notify: save config
   tags: [always, config]
 
-- name: Layer 3 Interface result 
+- name: debug Layer 3 Interface result 
+  debug:
     msg: "{{ _int_l3 }}"
   verbosity: 2
+  tags: [always, config]
 
 - name: Interface description and bring 'up'
   ios_interfaces:
@@ -28,9 +30,11 @@
   register: _int_descr
   tags: [always, config]
 
-- name: IOS Interface result 
+- name: debug IOS Interface result 
+  debug:
     msg: "{{ _int_descr }}"
   verbosity: 2
+  tags: [always, config]
 
 - name: IOS ping neighbour Router
   ios_ping:
@@ -47,4 +51,11 @@
   ios_config:
     lines: "default interface {{ item.name }}"
   loop: "{{ interface_config }}"
+  register: _int_rollback
   tags: [never, rollback]
+
+- name: debug IOS Interface rollback 
+  debug:
+    msg: "{{ _int_rollback }}"
+  verbosity: 2
+  tags: [always, config]
