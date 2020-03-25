@@ -1,7 +1,5 @@
 - name: post CSR Router on AWS
   hosts: function_router
-  vars: 
-    ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q -i ~/.ssh/aws-demo.pem centos@18.185.148.111"'
   gather_facts: false
   roles: 
     -  ios-router
