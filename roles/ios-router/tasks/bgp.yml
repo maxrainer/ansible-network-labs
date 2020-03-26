@@ -19,10 +19,10 @@
         - afi: ipv4
           safi: unicast
           neighbors:
-            - neighbor: "{{ item.ipaddress }}"
-              activate: "{{ item.activate }}"  
+            - neighbor: "{{ item }}"
+              activate: "yes"
     operation: merge
-  loop: "{{ ios_bgp_neighbors }}"
+  loop: "{{ ios_bgp_peers }}"
   tags: [bgp, config]
 
 - name: configure BGP networks

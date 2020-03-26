@@ -9,4 +9,5 @@
 - name: facts collected
   debug:
    msg: "{{ iosfacts }}"
-  tags: [never, debug]
+   verbosity: 2 
+  tags: facts
