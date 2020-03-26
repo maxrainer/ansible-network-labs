@@ -13,4 +13,4 @@
   tags: [pyats, never]
 
 - include_tasks: genie_generic.yml
-  tags: [geniegeneric, never]
+  tags: [genie, never]
