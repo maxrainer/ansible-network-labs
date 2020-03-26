@@ -5,10 +5,10 @@
     config: 
       bgp_as: "{{ ios_bgp_as }}"
       neighbors: 
-        - neighbor: "{{ item.ipaddress }}"
-          remote_as: "{{ item.as }}"
+        - neighbor: "{{ item }}"
+          remote_as: "{{ ios_bgp_as }}"
     operation: merge
-  loop: "{{ ios_bgp_neighbors }}"
+  loop: "{{ ios_bgp_peers }}"
   tags: [bgp, config]
 
 - name: configure IPv4 family BGP neighbors
