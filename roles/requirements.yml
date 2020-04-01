@@ -1,2 +1,6 @@
+collections:
+- f5networks.f5_modules
+
+roles:
 # Genie PyATS
 - src: clay584.parse_genie

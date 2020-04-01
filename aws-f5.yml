@@ -1,0 +1,9 @@
+---
+# play for F5 on AWS
+
+- name: F5 play
+  hosts: function_loadbalancer
+  roles:
+    - f5-loadbalancer
+  connection: local
+  gather_facts: no 
