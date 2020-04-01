@@ -1,7 +1,7 @@
 ---
 
 - name: www_pool for servers
-  bigip_pool: 
+  f5networks.f5_modules.bigip_pool: 
     provider: "{{ f5_provider }}"
     name: www_pool
     lb_method: "round-robin"
@@ -12,13 +12,13 @@
   tags: [always]
 
 - name: add pool members
-  bigip_pool_member:
+  f5networks.f5_modules.bigip_pool_member:
     provider: "{{ f5_provider }}"
-    port: "{{ hostvars[item].port }}"
-    name: "{{hostvars[item].inventory_hostname}}"
-    host: "{{hostvars[item].ansible_host}}"
+    port: "{{ hostvars[item].f5_webserver_port }}"
+    name: "{{hostvars[item].f5_webserver_name }}"
+    host: "{{hostvars[item].f5_webserver_host }}"
     pool: www_pool
-  loop: "{{ groups['webservers'] }}"
+  loop: "{{ groups['function_webserver'] }}"
   notify: save config
   tags: [always]
 
