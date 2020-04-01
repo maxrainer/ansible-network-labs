@@ -8,10 +8,10 @@
     license_key: "{{ f5_license }}"
   notify: save config
   tags: [always]
-  register: _f5_license
+  register: _f5_license_output
 
 - name: debug license
   debug:
-    msg: "{{ f5_license }}"
+    msg: "{{ _f5_license_output }}"
     verbosity: 2
   tags: [always]
