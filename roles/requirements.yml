@@ -1,2 +1,3 @@
-# Genie PyATS
-- src: clay584.parse_genie
+roles:
+  # Genie PyATS
+  - clay584.parse_genie
