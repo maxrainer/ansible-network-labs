@@ -31,8 +31,9 @@
 - name: Print Structured Data
   debug:
     msg: "{{ ip_bgp[0].value }}"
+    verbosity: 2
   delegate_to: localhost
-  tags: [never, debug]
+  tags: [always]
 
 - name: "fail if prefix is missing in BGP table"
   fail:
