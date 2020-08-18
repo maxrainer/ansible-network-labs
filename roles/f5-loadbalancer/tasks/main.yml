@@ -5,6 +5,7 @@
   debug:
     var: f5_provider
     verbosity: 2
+  tags: [always]
 
 - include_tasks: facts.yml 
   tags: [facts]
