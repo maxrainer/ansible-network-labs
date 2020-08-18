@@ -1,6 +1,11 @@
 ---
 # f5-loadbalancer roles main.yml
 
+- name: debug provider
+  debug:
+    var: f5_provider
+    verbosity: 2
+
 - include_tasks: facts.yml 
   tags: [facts]
 
