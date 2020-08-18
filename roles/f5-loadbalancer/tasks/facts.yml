@@ -1,5 +1,11 @@
 ---
 
+- name: inner provider
+  debug: 
+     msg: "{{ f5_provider }}"
+     verbosity: 2
+  tags: [always]
+
 - name: gather facts
   f5networks.f5_modules.bigip_device_info:
     provider: "{{ f5_provider }}"
