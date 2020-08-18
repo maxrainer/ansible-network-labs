@@ -27,7 +27,7 @@
   bigip_virtual_server:
     provider: "{{ f5_provider }}"
     name: "vip"
-    destination: "{{ f5_provider.server }}"
+    destination: "{{ private_ip_address }}"
     port: "80"
     enabled_vlans: "all"
     all_profiles: ['http']
